@@ -42,7 +42,7 @@ from tqdm import tqdm
 
 torch.backends.cudnn.benchmark = True
 
-VG_DIR = 'datasets/vg'
+VG_DIR = 'datasets/vg_curated'
 COCO_DIR = 'datasets/coco'
 
 parser = argparse.ArgumentParser()
@@ -414,8 +414,17 @@ def calculate_model_losses(args, skip_pixel_loss, model, img, img_pred,
 
 
 def main(args):
+  import sys
+  old_stdout = sys.stdout
+
+  log_file = open("log.txt","w")
+
+  sys.stdout = log_file
+
   print(args)
   check_args(args)
+
+  
   float_dtype = torch.cuda.FloatTensor
   long_dtype = torch.cuda.LongTensor
 
@@ -660,7 +669,10 @@ def main(args):
           if k not in key_blacklist:
             small_checkpoint[k] = v
         torch.save(small_checkpoint, checkpoint_path)
+        
+  sys.stdout = old_stdout
 
+  log_file.close()
 
 if __name__ == '__main__':
   args = parser.parse_args()

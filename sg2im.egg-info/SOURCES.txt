@@ -18,3 +18,7 @@ sg2im.egg-info/PKG-INFO
 sg2im.egg-info/SOURCES.txt
 sg2im.egg-info/dependency_links.txt
 sg2im.egg-info/top_level.txt
+sg2im/data/__init__.py
+sg2im/data/coco.py
+sg2im/data/utils.py
+sg2im/data/vg.py

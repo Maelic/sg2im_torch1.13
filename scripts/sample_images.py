@@ -26,7 +26,8 @@ import torch
 from torch.autograd import Variable
 from torch.utils.data import DataLoader
 
-from scipy.misc import imsave, imresize
+#from scipy.misc import imsave, imresize
+from imageio import imwrite as imsave
 
 from sg2im.data import imagenet_deprocess_batch
 from sg2im.data.coco import CocoSceneGraphDataset, coco_collate_fn
@@ -36,6 +37,7 @@ from sg2im.model import Sg2ImModel
 from sg2im.utils import int_tuple, bool_flag
 from sg2im.vis import draw_scene_graph
 
+from tqdm import tqdm
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--checkpoint', default='sg2im-models/vg64.pt')
@@ -58,8 +60,8 @@ parser.add_argument('--save_layout', default=True, type=bool_flag)
 parser.add_argument('--output_dir', default='output')
 
 # For VG
-VG_DIR = os.path.expanduser('datasets/vg')
-parser.add_argument('--vg_h5', default=os.path.join(VG_DIR, 'val.h5'))
+VG_DIR = os.path.expanduser('datasets/vg_curated')
+parser.add_argument('--vg_h5', default=os.path.join(VG_DIR, 'train.h5'))
 parser.add_argument('--vg_image_dir',
         default=os.path.join(VG_DIR, 'images'))
 
@@ -171,7 +173,7 @@ def run_model(args, checkpoint, output_dir, loader=None):
   }
 
   img_idx = 0
-  for batch in loader:
+  for batch in tqdm(loader):
     masks = None
     if len(batch) == 6:
       imgs, objs, boxes, triples, obj_to_img, triple_to_img = [x.cuda() for x in batch]
@@ -230,14 +232,14 @@ def run_model(args, checkpoint, output_dir, loader=None):
       data['masks_gt'].append(cur_masks_gt)
 
       if args.save_graphs:
-        graph_img = draw_scene_graph(vocab, objs[i], triples[i])
+        graph_img = draw_scene_graph(objs[i], triples[i], vocab=vocab)
         graph_path = os.path.join(graph_dir, img_filename)
         imsave(graph_path, graph_img)
       
       img_idx += 1
 
     torch.save(data, data_path)
-    print('Saved %d images' % img_idx)
+    #print('Saved %d images' % img_idx)
   
 
 def main(args):

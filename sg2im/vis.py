@@ -107,6 +107,7 @@ def draw_box(box, color, text=None):
     plt.text(tx, ty, text, va='center', ha='center')
 
 
+
 def draw_scene_graph(objs, triples, vocab=None, **kwargs):
   """
   Use GraphViz to draw a scene graph. If vocab is not passed then we assume
@@ -136,7 +137,7 @@ def draw_scene_graph(objs, triples, vocab=None, **kwargs):
       objs_list.append(vocab['object_idx_to_name'][objs[i].item()])
     for i in range(triples.size(0)):
       s = triples[i, 0].item()
-      p = vocab['pred_name_to_idx'][triples[i, 1].item()]
+      p = vocab['pred_idx_to_name'][triples[i, 1].item()]
       o = triples[i, 2].item()
       triples_list.append([s, p, o])
     objs, triples = objs_list, triples_list
