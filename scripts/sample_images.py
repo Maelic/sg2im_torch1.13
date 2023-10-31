@@ -45,7 +45,7 @@ parser.add_argument('--checkpoint_list', default=None)
 parser.add_argument('--model_mode', default='eval', choices=['train', 'eval'])
 
 # Shared dataset options
-parser.add_argument('--dataset', default='vg', choices=['coco', 'vg'])
+parser.add_argument('--dataset', default='vg', choices=['coco', 'vg', 'vg_curated'])
 parser.add_argument('--image_size', default=(64, 64), type=int_tuple)
 parser.add_argument('--batch_size', default=24, type=int)
 parser.add_argument('--shuffle', default=False, type=bool_flag)
@@ -60,10 +60,14 @@ parser.add_argument('--save_layout', default=True, type=bool_flag)
 parser.add_argument('--output_dir', default='output')
 
 # For VG
-VG_DIR = os.path.expanduser('datasets/vg_curated')
+VG_DIR = os.path.expanduser('datasets/vg')
 parser.add_argument('--vg_h5', default=os.path.join(VG_DIR, 'train.h5'))
 parser.add_argument('--vg_image_dir',
         default=os.path.join(VG_DIR, 'images'))
+
+# For VG_curated
+VG_CURATED_DIR = os.path.expanduser('datasets/vg_curated')
+parser.add_argument('--vg_curated_h5', default=os.path.join(VG_CURATED_DIR, 'train.h5'))
 
 # For COCO
 COCO_DIR = os.path.expanduser('~/datasets/coco/2017')
@@ -110,6 +114,19 @@ def build_vg_dset(args, checkpoint):
   dset = VgSceneGraphDataset(**dset_kwargs)
   return dset
 
+def build_vg_curated_dset(args, checkpoint):
+  vocab = checkpoint['model_kwargs']['vocab']
+  dset_kwargs = {
+    'vocab': vocab,
+    'h5_path': args.vg_curated_h5,
+    'image_dir': args.vg_image_dir,
+    'image_size': args.image_size,
+    'max_samples': args.num_samples,
+    'max_objects': checkpoint['args']['max_objects_per_image'],
+    'use_orphaned_objects': checkpoint['args']['vg_use_orphaned_objects'],
+  }
+  dset = VgSceneGraphDataset(**dset_kwargs)
+  return dset
 
 def build_loader(args, checkpoint):
   if args.dataset == 'coco':
@@ -117,6 +134,9 @@ def build_loader(args, checkpoint):
     collate_fn = coco_collate_fn
   elif args.dataset == 'vg':
     dset = build_vg_dset(args, checkpoint)
+    collate_fn = vg_collate_fn
+  elif args.dataset == 'vg_curated':
+    dset = build_vg_curated_dset(args, checkpoint)
     collate_fn = vg_collate_fn
 
   loader_kwargs = {

@@ -135,6 +135,10 @@ def draw_scene_graph(objs, triples, vocab=None, **kwargs):
     objs_list, triples_list = [], []
     for i in range(objs.size(0)):
       objs_list.append(vocab['object_idx_to_name'][objs[i].item()])
+    # affecting specific number to each object
+    for i in range(triples.size(0)):
+      
+
     for i in range(triples.size(0)):
       s = triples[i, 0].item()
       p = vocab['pred_idx_to_name'][triples[i, 1].item()]
