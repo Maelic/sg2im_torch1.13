@@ -42,7 +42,7 @@ from tqdm import tqdm
 
 torch.backends.cudnn.benchmark = True
 
-VG_DIR = 'datasets/vg'
+VG_DIR = 'datasets/vg150'
 COCO_DIR = 'datasets/coco'
 
 parser = argparse.ArgumentParser()
@@ -69,7 +69,7 @@ parser.add_argument('--vg_image_dir', default=os.path.join(VG_DIR, 'images'))
 parser.add_argument('--train_h5', default=os.path.join(VG_DIR, 'train.h5'))
 parser.add_argument('--val_h5', default=os.path.join(VG_DIR, 'val.h5'))
 parser.add_argument('--vocab_json', default=os.path.join(VG_DIR, 'vocab.json'))
-parser.add_argument('--max_objects_per_image', default=10, type=int)
+parser.add_argument('--max_objects_per_image', default=30, type=int)
 parser.add_argument('--vg_use_orphaned_objects', default=True, type=bool_flag)
 
 # COCO-specific options
@@ -414,6 +414,13 @@ def calculate_model_losses(args, skip_pixel_loss, model, img, img_pred,
 
 
 def main(args):
+  # import sys
+  # old_stdout = sys.stdout
+
+  # log_file = open("log.txt","w")
+
+  # sys.stdout = log_file
+
   print(args)
   check_args(args)
   float_dtype = torch.cuda.FloatTensor
@@ -522,6 +529,22 @@ def main(args):
         assert False
       predicates = triples[:, 1]
 
+      # print("OBJS: ", objs)
+      # print("TRIPLES: ", triples)
+      # print("OBJ_TO_IMG: ", obj_to_img)
+      # print("BOXES: ", boxes)
+
+      # check min & max value of all tensors
+      # print("min objs: ", torch.min(objs))
+      # print("max objs: ", torch.max(objs))
+      # print("min triples: ", torch.min(triples))
+      # print("max triples: ", torch.max(triples))
+      # print("min obj_to_img: ", torch.min(obj_to_img))
+      # print("max obj_to_img: ", torch.max(obj_to_img))
+      # print("min boxes: ", torch.min(boxes))
+      # print("max boxes: ", torch.max(boxes))
+
+      
       with timeit('forward', args.timing):
         model_boxes = boxes
         model_masks = masks
@@ -660,7 +683,10 @@ def main(args):
           if k not in key_blacklist:
             small_checkpoint[k] = v
         torch.save(small_checkpoint, checkpoint_path)
+        
+  # sys.stdout = old_stdout
 
+  # log_file.close()
 
 if __name__ == '__main__':
   args = parser.parse_args()

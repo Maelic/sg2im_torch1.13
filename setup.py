@@ -7,5 +7,5 @@ setup(name='sg2im',
       description='Python Distribution Utilities',
       author='Greg Ward',
       author_email='gward@python.net',
-      packages=['sg2im'],
+      packages=['sg2im', 'sg2im.data'],
      )

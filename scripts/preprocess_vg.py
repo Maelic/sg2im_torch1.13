@@ -30,7 +30,7 @@ fully-connected.
 
 
 VG_DIR = '/home/maelic/Documents/PhD/MyModel/PhD_Commonsense_Enrichment/VG_refinement/data_tools/VG/original'
-CUSTOM_DIR = '/home/maelic/Documents/PhD/MyModel/PhD_Commonsense_Enrichment/VG_refinement/data_tools/VG150/baseline/'
+CUSTOM_DIR = '/home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/datasets/vg'
 
 parser = argparse.ArgumentParser()
 
@@ -39,7 +39,7 @@ parser.add_argument('--splits_json', default='sg2im/data/vg_splits.json')
 parser.add_argument('--images_json',
     default=os.path.join(VG_DIR, 'image_data.json'))
 parser.add_argument('--objects_json',
-    default=os.path.join(CUSTOM_DIR, 'objects.json'))
+    default=os.path.join(VG_DIR, 'objects.json'))
 parser.add_argument('--attributes_json',
     default=os.path.join(VG_DIR, 'attributes.json'))
 parser.add_argument('--object_aliases',
@@ -47,29 +47,29 @@ parser.add_argument('--object_aliases',
 parser.add_argument('--relationship_aliases',
     default=os.path.join(VG_DIR, 'predicate_alias.txt'))
 parser.add_argument('--relationships_json',
-    default=os.path.join(CUSTOM_DIR, 'relationships.json'))
+    default=os.path.join(VG_DIR, 'relationships.json'))
 
 # Arguments for images
 parser.add_argument('--min_image_size', default=200, type=int)
 parser.add_argument('--train_split', default='train')
 
 # Arguments for objects
-parser.add_argument('--min_object_instances', default=2000, type=int)
-parser.add_argument('--min_attribute_instances', default=2000, type=int)
-parser.add_argument('--min_object_size', default=32, type=int)
+parser.add_argument('--min_object_instances', default=1000, type=int)
+parser.add_argument('--min_attribute_instances', default=1000, type=int)
+parser.add_argument('--min_object_size', default=24, type=int)
 parser.add_argument('--min_objects_per_image', default=3, type=int)
 parser.add_argument('--max_objects_per_image', default=30, type=int)
 parser.add_argument('--max_attributes_per_image', default=30, type=int)
 
 # Arguments for relationships
-parser.add_argument('--min_relationship_instances', default=500, type=int)
+parser.add_argument('--min_relationship_instances', default=20, type=int)
 parser.add_argument('--min_relationships_per_image', default=1, type=int)
 parser.add_argument('--max_relationships_per_image', default=30, type=int)
 
 # Output
 parser.add_argument('--output_vocab_json',
-    default=os.path.join(VG_DIR, 'vocab.json'))
-parser.add_argument('--output_h5_dir', default=VG_DIR)
+    default=os.path.join(CUSTOM_DIR, 'vocab.json'))
+parser.add_argument('--output_h5_dir', default=CUSTOM_DIR)
 
 
 def main(args):
