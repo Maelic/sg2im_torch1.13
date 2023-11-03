@@ -1439,3 +1439,22 @@
 2023-11-03 14:28:11,935 INFO    WriterThread:30833 [datastore.py:close():294] close: /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142738-yo20osht/run-yo20osht.wandb
 2023-11-03 14:28:12,045 INFO    wandb-upload_1:30833 [upload_job.py:push():86] Skipped uploading /home/maelic/.local/share/wandb/artifacts/staging/tmpx6t4sbtn
 2023-11-03 14:28:12,333 INFO    wandb-upload_0:30833 [upload_job.py:push():89] Uploaded file /home/maelic/.local/share/wandb/artifacts/staging/tmpdbc75m2f
+2023-11-03 14:28:13,603 INFO    SenderThread:30833 [sender.py:send_artifact():1456] sent artifact job-https___github.com_Maelic_sg2im_torch1.13.git_scripts_train.py - {'id': 'QXJ0aWZhY3Q6NjI3MDA0NDY3', 'state': 'PENDING', 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjExMjQzNTU3NA==', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NjI3MDAzMDA5', 'versionIndex': 1}}}
+2023-11-03 14:28:13,603 INFO    SenderThread:30833 [sender.py:finish():1534] shutting down sender
+2023-11-03 14:28:13,603 INFO    SenderThread:30833 [dir_watcher.py:finish():358] shutting down directory watcher
+2023-11-03 14:28:13,887 INFO    SenderThread:30833 [dir_watcher.py:finish():388] scan: /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142738-yo20osht/files
+2023-11-03 14:28:13,887 INFO    SenderThread:30833 [dir_watcher.py:finish():402] scan save: /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142738-yo20osht/files/wandb-metadata.json wandb-metadata.json
+2023-11-03 14:28:13,887 INFO    SenderThread:30833 [dir_watcher.py:finish():402] scan save: /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142738-yo20osht/files/config.yaml config.yaml
+2023-11-03 14:28:13,887 INFO    SenderThread:30833 [dir_watcher.py:finish():402] scan save: /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142738-yo20osht/files/wandb-summary.json wandb-summary.json
+2023-11-03 14:28:13,887 INFO    SenderThread:30833 [dir_watcher.py:finish():402] scan save: /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142738-yo20osht/files/output.log output.log
+2023-11-03 14:28:13,890 INFO    SenderThread:30833 [dir_watcher.py:finish():402] scan save: /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142738-yo20osht/files/requirements.txt requirements.txt
+2023-11-03 14:28:13,891 INFO    SenderThread:30833 [dir_watcher.py:finish():402] scan save: /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142738-yo20osht/files/conda-environment.yaml conda-environment.yaml
+2023-11-03 14:28:13,893 INFO    SenderThread:30833 [file_pusher.py:finish():175] shutting down file pusher
+2023-11-03 14:28:13,893 INFO    SenderThread:30833 [file_pusher.py:join():181] waiting for file pusher
+2023-11-03 14:28:14,240 INFO    wandb-upload_1:30833 [upload_job.py:push():131] Uploaded file /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142738-yo20osht/files/config.yaml
+2023-11-03 14:28:14,294 INFO    wandb-upload_0:30833 [upload_job.py:push():131] Uploaded file /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142738-yo20osht/files/wandb-summary.json
+2023-11-03 14:28:14,422 INFO    wandb-upload_3:30833 [upload_job.py:push():131] Uploaded file /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142738-yo20osht/files/requirements.txt
+2023-11-03 14:28:14,431 INFO    wandb-upload_2:30833 [upload_job.py:push():131] Uploaded file /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142738-yo20osht/files/output.log
+2023-11-03 14:28:14,442 INFO    wandb-upload_4:30833 [upload_job.py:push():131] Uploaded file /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142738-yo20osht/files/conda-environment.yaml
+2023-11-03 14:28:14,894 INFO    SenderThread:30833 [file_stream.py:finish():595] file stream finish called
+2023-11-03 14:28:15,056 INFO    SenderThread:30833 [file_stream.py:finish():599] file stream finish is done
