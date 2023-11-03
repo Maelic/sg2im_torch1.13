@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/scripts/train.py", line 691, in <module>
+    main(args)
+  File "/home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/scripts/train.py", line 437, in main
+    vocab, train_loader, val_loader = build_loaders(args)
+  File "/home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/scripts/train.py", line 310, in build_loaders
+    'collate_fn': collate_fn,
+UnboundLocalError: local variable 'collate_fn' referenced before assignment

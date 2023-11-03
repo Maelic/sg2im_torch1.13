@@ -1,0 +1,26 @@
+2023-11-03 14:27:10,033 INFO    MainThread:30639 [wandb_setup.py:_flush():76] Current SDK version is 0.15.12
+2023-11-03 14:27:10,033 INFO    MainThread:30639 [wandb_setup.py:_flush():76] Configure stats pid to 30639
+2023-11-03 14:27:10,033 INFO    MainThread:30639 [wandb_setup.py:_flush():76] Loading settings from /home/maelic/.config/wandb/settings
+2023-11-03 14:27:10,033 INFO    MainThread:30639 [wandb_setup.py:_flush():76] Loading settings from /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/settings
+2023-11-03 14:27:10,034 INFO    MainThread:30639 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2023-11-03 14:27:10,034 INFO    MainThread:30639 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2023-11-03 14:27:10,034 INFO    MainThread:30639 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'scripts/train.py', 'program_abspath': '/home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/scripts/train.py', 'program': '/home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/scripts/train.py'}
+2023-11-03 14:27:10,034 INFO    MainThread:30639 [wandb_init.py:_log_setup():528] Logging user logs to /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142710-aogeeq5l/logs/debug.log
+2023-11-03 14:27:10,034 INFO    MainThread:30639 [wandb_init.py:_log_setup():529] Logging internal logs to /home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/wandb/run-20231103_142710-aogeeq5l/logs/debug-internal.log
+2023-11-03 14:27:10,034 INFO    MainThread:30639 [wandb_init.py:init():568] calling init triggers
+2023-11-03 14:27:10,034 INFO    MainThread:30639 [wandb_init.py:init():575] wandb.init called with sweep_config: {}
+config: {'dataset': 'vg150', 'base_path': 'datasets', 'batch_size': 8, 'num_iterations': 1000000, 'learning_rate': 0.0001, 'eval_mode_after': 100000, 'image_size': (256, 256), 'num_train_samples': None, 'num_val_samples': 1024, 'shuffle_val': True, 'loader_num_workers': 4, 'include_relationships': True, 'vg_image_dir': '/home/maelic/Documents/PhD/Datasets/VisualGenome/VG_100K', 'train_h5': 'train.h5', 'val_h5': 'val.h5', 'vocab_json': 'vocab.json', 'max_objects_per_image': 30, 'vg_use_orphaned_objects': True, 'coco_train_image_dir': 'datasets/coco/images/train2017', 'coco_val_image_dir': 'datasets/coco/images/val2017', 'coco_train_instances_json': 'datasets/coco/annotations/instances_train2017.json', 'coco_train_stuff_json': 'datasets/coco/annotations/stuff_train2017.json', 'coco_val_instances_json': 'datasets/coco/annotations/instances_val2017.json', 'coco_val_stuff_json': 'datasets/coco/annotations/stuff_val2017.json', 'instance_whitelist': None, 'stuff_whitelist': None, 'coco_include_other': False, 'min_object_size': 0.02, 'min_objects_per_image': 3, 'coco_stuff_only': True, 'mask_size': 16, 'embedding_dim': 128, 'gconv_dim': 128, 'gconv_hidden_dim': 512, 'gconv_num_layers': 5, 'mlp_normalization': 'none', 'refinement_network_dims': (1024, 512, 256, 128, 64), 'normalization': 'batch', 'activation': 'leakyrelu-0.2', 'layout_noise_dim': 32, 'use_boxes_pred_after': -1, 'mask_loss_weight': 0, 'l1_pixel_loss_weight': 1.0, 'bbox_pred_loss_weight': 10, 'predicate_pred_loss_weight': 0, 'discriminator_loss_weight': 0.01, 'gan_loss_type': 'gan', 'd_clip': None, 'd_normalization': 'batch', 'd_padding': 'valid', 'd_activation': 'leakyrelu-0.2', 'd_obj_arch': 'C4-64-2,C4-128-2,C4-256-2', 'crop_size': 32, 'd_obj_weight': 1.0, 'ac_loss_weight': 0.1, 'd_img_arch': 'C4-64-2,C4-128-2,C4-256-2', 'd_img_weight': 1.0, 'print_every': 10000, 'timing': False, 'checkpoint_every': 20000, 'output_dir': './checkpoints', 'checkpoint_name': 'checkpoint', 'checkpoint_start_from': None, 'restore_from_checkpoint': False}
+2023-11-03 14:27:10,034 INFO    MainThread:30639 [wandb_init.py:init():618] starting backend
+2023-11-03 14:27:10,034 INFO    MainThread:30639 [wandb_init.py:init():622] setting up manager
+2023-11-03 14:27:10,034 INFO    MainThread:30639 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2023-11-03 14:27:10,035 INFO    MainThread:30639 [wandb_init.py:init():628] backend started and connected
+2023-11-03 14:27:10,036 INFO    MainThread:30639 [wandb_init.py:init():720] updated telemetry
+2023-11-03 14:27:10,043 INFO    MainThread:30639 [wandb_init.py:init():753] communicating run to backend with 90.0 second timeout
+2023-11-03 14:27:10,464 INFO    MainThread:30639 [wandb_run.py:_on_init():2220] communicating current version
+2023-11-03 14:27:10,547 INFO    MainThread:30639 [wandb_run.py:_on_init():2229] got version response 
+2023-11-03 14:27:10,547 INFO    MainThread:30639 [wandb_init.py:init():804] starting run threads in backend
+2023-11-03 14:27:12,061 INFO    MainThread:30639 [wandb_run.py:_console_start():2199] atexit reg
+2023-11-03 14:27:12,061 INFO    MainThread:30639 [wandb_run.py:_redirect():2054] redirect: wrap_raw
+2023-11-03 14:27:12,062 INFO    MainThread:30639 [wandb_run.py:_redirect():2119] Wrapping output streams.
+2023-11-03 14:27:12,062 INFO    MainThread:30639 [wandb_run.py:_redirect():2144] Redirects installed.
+2023-11-03 14:27:12,062 INFO    MainThread:30639 [wandb_init.py:init():845] run started, returning control to user process

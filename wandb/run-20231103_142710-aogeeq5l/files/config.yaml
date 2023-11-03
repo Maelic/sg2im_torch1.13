@@ -1,0 +1,228 @@
+wandb_version: 1
+
+dataset:
+  desc: null
+  value: vg150
+base_path:
+  desc: null
+  value: datasets
+batch_size:
+  desc: null
+  value: 8
+num_iterations:
+  desc: null
+  value: 1000000
+learning_rate:
+  desc: null
+  value: 0.0001
+eval_mode_after:
+  desc: null
+  value: 100000
+image_size:
+  desc: null
+  value:
+  - 256
+  - 256
+num_train_samples:
+  desc: null
+  value: null
+num_val_samples:
+  desc: null
+  value: 1024
+shuffle_val:
+  desc: null
+  value: true
+loader_num_workers:
+  desc: null
+  value: 4
+include_relationships:
+  desc: null
+  value: true
+vg_image_dir:
+  desc: null
+  value: /home/maelic/Documents/PhD/Datasets/VisualGenome/VG_100K
+train_h5:
+  desc: null
+  value: train.h5
+val_h5:
+  desc: null
+  value: val.h5
+vocab_json:
+  desc: null
+  value: vocab.json
+max_objects_per_image:
+  desc: null
+  value: 30
+vg_use_orphaned_objects:
+  desc: null
+  value: true
+coco_train_image_dir:
+  desc: null
+  value: datasets/coco/images/train2017
+coco_val_image_dir:
+  desc: null
+  value: datasets/coco/images/val2017
+coco_train_instances_json:
+  desc: null
+  value: datasets/coco/annotations/instances_train2017.json
+coco_train_stuff_json:
+  desc: null
+  value: datasets/coco/annotations/stuff_train2017.json
+coco_val_instances_json:
+  desc: null
+  value: datasets/coco/annotations/instances_val2017.json
+coco_val_stuff_json:
+  desc: null
+  value: datasets/coco/annotations/stuff_val2017.json
+instance_whitelist:
+  desc: null
+  value: null
+stuff_whitelist:
+  desc: null
+  value: null
+coco_include_other:
+  desc: null
+  value: false
+min_object_size:
+  desc: null
+  value: 0.02
+min_objects_per_image:
+  desc: null
+  value: 3
+coco_stuff_only:
+  desc: null
+  value: true
+mask_size:
+  desc: null
+  value: 16
+embedding_dim:
+  desc: null
+  value: 128
+gconv_dim:
+  desc: null
+  value: 128
+gconv_hidden_dim:
+  desc: null
+  value: 512
+gconv_num_layers:
+  desc: null
+  value: 5
+mlp_normalization:
+  desc: null
+  value: none
+refinement_network_dims:
+  desc: null
+  value:
+  - 1024
+  - 512
+  - 256
+  - 128
+  - 64
+normalization:
+  desc: null
+  value: batch
+activation:
+  desc: null
+  value: leakyrelu-0.2
+layout_noise_dim:
+  desc: null
+  value: 32
+use_boxes_pred_after:
+  desc: null
+  value: -1
+mask_loss_weight:
+  desc: null
+  value: 0
+l1_pixel_loss_weight:
+  desc: null
+  value: 1.0
+bbox_pred_loss_weight:
+  desc: null
+  value: 10
+predicate_pred_loss_weight:
+  desc: null
+  value: 0
+discriminator_loss_weight:
+  desc: null
+  value: 0.01
+gan_loss_type:
+  desc: null
+  value: gan
+d_clip:
+  desc: null
+  value: null
+d_normalization:
+  desc: null
+  value: batch
+d_padding:
+  desc: null
+  value: valid
+d_activation:
+  desc: null
+  value: leakyrelu-0.2
+d_obj_arch:
+  desc: null
+  value: C4-64-2,C4-128-2,C4-256-2
+crop_size:
+  desc: null
+  value: 32
+d_obj_weight:
+  desc: null
+  value: 1.0
+ac_loss_weight:
+  desc: null
+  value: 0.1
+d_img_arch:
+  desc: null
+  value: C4-64-2,C4-128-2,C4-256-2
+d_img_weight:
+  desc: null
+  value: 1.0
+print_every:
+  desc: null
+  value: 10000
+timing:
+  desc: null
+  value: false
+checkpoint_every:
+  desc: null
+  value: 20000
+output_dir:
+  desc: null
+  value: ./checkpoints
+checkpoint_name:
+  desc: null
+  value: checkpoint
+checkpoint_start_from:
+  desc: null
+  value: null
+restore_from_checkpoint:
+  desc: null
+  value: false
+_wandb:
+  desc: null
+  value:
+    python_version: 3.10.13
+    cli_version: 0.15.12
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1699018030.035413
+    t:
+      1:
+      - 1
+      - 41
+      - 55
+      2:
+      - 1
+      - 41
+      - 55
+      3:
+      - 13
+      - 16
+      - 23
+      4: 3.10.13
+      5: 0.15.12
+      8:
+      - 5
+      13: linux-x86_64

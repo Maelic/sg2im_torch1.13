@@ -18,10 +18,8 @@ scikit-image
 scipy
 six
 toolz
-<<<<<<< HEAD
 torch
 torchvision
 tqdm
-=======
->>>>>>> 78b8ba4c8012723d7f9a27685728327cc9ac2c2e
 pycocotools
+wandb

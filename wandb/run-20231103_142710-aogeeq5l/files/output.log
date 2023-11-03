@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/scripts/train.py", line 691, in <module>
+    main(args)
+  File "/home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/scripts/train.py", line 437, in main
+    vocab, train_loader, val_loader = build_loaders(args)
+  File "/home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/scripts/train.py", line 300, in build_loaders
+    vocab, train_dset, val_dset = build_vg_dsets(args)
+  File "/home/maelic/Documents/PhD/ModelZoo/SGG2IM/sg2im/scripts/train.py", line 273, in build_vg_dsets
+    args.test_h5 = os.path.join(anno_path, args.test_h5)
+AttributeError: 'Namespace' object has no attribute 'test_h5'

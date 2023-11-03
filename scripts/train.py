@@ -21,6 +21,7 @@ import json
 import math
 from collections import defaultdict
 import random
+import wandb
 
 import numpy as np
 import torch
@@ -42,15 +43,12 @@ from tqdm import tqdm
 
 torch.backends.cudnn.benchmark = True
 
-<<<<<<< HEAD
-VG_DIR = 'datasets/vg150'
-=======
-VG_DIR = 'datasets/vg_curated'
->>>>>>> 78b8ba4c8012723d7f9a27685728327cc9ac2c2e
 COCO_DIR = 'datasets/coco'
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default='coco', choices=['vg', 'coco'])
+parser.add_argument('--dataset', default='vg150', choices=['vg150', 'vg', 'coco'])
+parser.add_argument('--base_path', default=None)
+
 
 # Optimization hyperparameters
 parser.add_argument('--batch_size', default=32, type=int)
@@ -69,10 +67,10 @@ parser.add_argument('--loader_num_workers', default=4, type=int)
 parser.add_argument('--include_relationships', default=True, type=bool_flag)
 
 # VG-specific options
-parser.add_argument('--vg_image_dir', default=os.path.join(VG_DIR, 'images'))
-parser.add_argument('--train_h5', default=os.path.join(VG_DIR, 'train.h5'))
-parser.add_argument('--val_h5', default=os.path.join(VG_DIR, 'val.h5'))
-parser.add_argument('--vocab_json', default=os.path.join(VG_DIR, 'vocab.json'))
+parser.add_argument('--vg_image_dir', default='images')
+parser.add_argument('--train_h5', default='train.h5')
+parser.add_argument('--val_h5', default='val.h5')
+parser.add_argument('--vocab_json', default='vocab.json')
 parser.add_argument('--max_objects_per_image', default=30, type=int)
 parser.add_argument('--vg_use_orphaned_objects', default=True, type=bool_flag)
 
@@ -267,6 +265,12 @@ def build_coco_dsets(args):
 
 
 def build_vg_dsets(args):
+  if args.base_path is not None:
+    anno_path = os.path.join(args.base_path, args.dataset)
+    args.vocab_json = os.path.join(anno_path, args.vocab_json)
+    args.train_h5 = os.path.join(anno_path, args.train_h5)
+    args.val_h5 = os.path.join(anno_path, args.val_h5)
+
   with open(args.vocab_json, 'r') as f:
     vocab = json.load(f)
   dset_kwargs = {
@@ -291,7 +295,7 @@ def build_vg_dsets(args):
 
 
 def build_loaders(args):
-  if args.dataset == 'vg':
+  if 'vg' in args.dataset:
     vocab, train_dset, val_dset = build_vg_dsets(args)
     collate_fn = vg_collate_fn
   elif args.dataset == 'coco':
@@ -418,25 +422,13 @@ def calculate_model_losses(args, skip_pixel_loss, model, img, img_pred,
 
 
 def main(args):
-<<<<<<< HEAD
-  # import sys
-  # old_stdout = sys.stdout
-
-  # log_file = open("log.txt","w")
-
-  # sys.stdout = log_file
-=======
-  import sys
-  old_stdout = sys.stdout
-
-  log_file = open("log.txt","w")
-
-  sys.stdout = log_file
->>>>>>> 78b8ba4c8012723d7f9a27685728327cc9ac2c2e
 
   print(args)
   check_args(args)
 
+  # create wandb project
+  run_name = args.dataset + '_' + str(args.image_size[0])
+  wandb.init(project="sg2im", name=run_name, config=args)
   
   float_dtype = torch.cuda.FloatTensor
   long_dtype = torch.cuda.LongTensor
@@ -544,22 +536,6 @@ def main(args):
         assert False
       predicates = triples[:, 1]
 
-      # print("OBJS: ", objs)
-      # print("TRIPLES: ", triples)
-      # print("OBJ_TO_IMG: ", obj_to_img)
-      # print("BOXES: ", boxes)
-
-      # check min & max value of all tensors
-      # print("min objs: ", torch.min(objs))
-      # print("max objs: ", torch.max(objs))
-      # print("min triples: ", torch.min(triples))
-      # print("max triples: ", torch.max(triples))
-      # print("min obj_to_img: ", torch.min(obj_to_img))
-      # print("max obj_to_img: ", torch.max(obj_to_img))
-      # print("min boxes: ", torch.min(boxes))
-      # print("max boxes: ", torch.max(boxes))
-
-      
       with timeit('forward', args.timing):
         model_boxes = boxes
         model_masks = masks
@@ -629,6 +605,16 @@ def main(args):
         optimizer_d_img.zero_grad()
         d_img_losses.total_loss.backward()
         optimizer_d_img.step()
+      
+      # wandb logging
+      for name, val in losses.items():
+        wandb.log({name: val})
+      if obj_discriminator is not None:
+        for name, val in d_obj_losses.items():
+          wandb.log({name: val})
+      if img_discriminator is not None:
+        for name, val in d_img_losses.items():
+          wandb.log({name: val})
 
       if t % args.print_every == 0:
         print('t = %d / %d' % (t, args.num_iterations))
@@ -698,16 +684,6 @@ def main(args):
           if k not in key_blacklist:
             small_checkpoint[k] = v
         torch.save(small_checkpoint, checkpoint_path)
-        
-<<<<<<< HEAD
-  # sys.stdout = old_stdout
-
-  # log_file.close()
-=======
-  sys.stdout = old_stdout
-
-  log_file.close()
->>>>>>> 78b8ba4c8012723d7f9a27685728327cc9ac2c2e
 
 if __name__ == '__main__':
   args = parser.parse_args()
