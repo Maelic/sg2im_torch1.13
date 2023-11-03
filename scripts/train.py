@@ -42,7 +42,11 @@ from tqdm import tqdm
 
 torch.backends.cudnn.benchmark = True
 
+<<<<<<< HEAD
 VG_DIR = 'datasets/vg150'
+=======
+VG_DIR = 'datasets/vg_curated'
+>>>>>>> 78b8ba4c8012723d7f9a27685728327cc9ac2c2e
 COCO_DIR = 'datasets/coco'
 
 parser = argparse.ArgumentParser()
@@ -414,15 +418,26 @@ def calculate_model_losses(args, skip_pixel_loss, model, img, img_pred,
 
 
 def main(args):
+<<<<<<< HEAD
   # import sys
   # old_stdout = sys.stdout
 
   # log_file = open("log.txt","w")
 
   # sys.stdout = log_file
+=======
+  import sys
+  old_stdout = sys.stdout
+
+  log_file = open("log.txt","w")
+
+  sys.stdout = log_file
+>>>>>>> 78b8ba4c8012723d7f9a27685728327cc9ac2c2e
 
   print(args)
   check_args(args)
+
+  
   float_dtype = torch.cuda.FloatTensor
   long_dtype = torch.cuda.LongTensor
 
@@ -684,9 +699,15 @@ def main(args):
             small_checkpoint[k] = v
         torch.save(small_checkpoint, checkpoint_path)
         
+<<<<<<< HEAD
   # sys.stdout = old_stdout
 
   # log_file.close()
+=======
+  sys.stdout = old_stdout
+
+  log_file.close()
+>>>>>>> 78b8ba4c8012723d7f9a27685728327cc9ac2c2e
 
 if __name__ == '__main__':
   args = parser.parse_args()

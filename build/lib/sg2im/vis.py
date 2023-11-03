@@ -107,6 +107,7 @@ def draw_box(box, color, text=None):
     plt.text(tx, ty, text, va='center', ha='center')
 
 
+
 def draw_scene_graph(objs, triples, vocab=None, **kwargs):
   """
   Use GraphViz to draw a scene graph. If vocab is not passed then we assume

@@ -5,4 +5,7 @@ outputs/
 sg2im-models/
 env/
 datasets/
+build/
+*.zip
+*.pth
 *.pt
