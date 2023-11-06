@@ -31,7 +31,7 @@ from .utils import imagenet_preprocess, Resize
 
 class VgSceneGraphDataset(Dataset):
   def __init__(self, vocab, h5_path, image_dir, image_size=(256, 256),
-               normalize_images=True, max_objects=10, max_samples=None,
+               normalize_images=True, max_objects=30, max_samples=None,
                include_relationships=True, use_orphaned_objects=True):
     super(VgSceneGraphDataset, self).__init__()
 

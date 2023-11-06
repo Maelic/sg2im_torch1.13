@@ -60,13 +60,8 @@ parser.add_argument('--save_layout', default=True, type=bool_flag)
 parser.add_argument('--output_dir', default='output')
 
 # For VG
-<<<<<<< HEAD
-VG_DIR = os.path.expanduser('datasets/vg_curated')
-parser.add_argument('--vg_h5', default=os.path.join(VG_DIR, 'val.h5'))
-=======
 VG_DIR = os.path.expanduser('datasets/vg')
-parser.add_argument('--vg_h5', default=os.path.join(VG_DIR, 'train.h5'))
->>>>>>> 78b8ba4c8012723d7f9a27685728327cc9ac2c2e
+parser.add_argument('--vg_h5', default=os.path.join(VG_DIR, 'val.h5'))
 parser.add_argument('--vg_image_dir',
         default=os.path.join(VG_DIR, 'images'))
 
