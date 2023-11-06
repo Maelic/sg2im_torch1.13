@@ -608,13 +608,13 @@ def main(args):
       
       # wandb logging
       for name, val in losses.items():
-        wandb.log({name: val})
+        wandb.log({name: val}, step=t)
       if obj_discriminator is not None:
         for name, val in d_obj_losses.items():
-          wandb.log({name: val})
+          wandb.log({name: val}, step=t)
       if img_discriminator is not None:
         for name, val in d_img_losses.items():
-          wandb.log({name: val})
+          wandb.log({name: val}, step=t)
 
       if t % args.print_every == 0:
         print('t = %d / %d' % (t, args.num_iterations))
@@ -652,6 +652,8 @@ def main(args):
 
         print('train iou: ', t_avg_iou)
         print('val iou: ', val_avg_iou)
+        wandb.log({"val_iou": val_avg_iou}, step=t)        
+        wandb.log({"train": t_avg_iou}, step=t)     
 
         for k, v in val_losses.items():
           checkpoint['val_losses'][k].append(v)
